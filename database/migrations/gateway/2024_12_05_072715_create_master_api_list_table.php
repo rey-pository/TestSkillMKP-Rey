@@ -15,7 +15,7 @@ class CreateMasterApiListTable extends Migration
     {
         Schema::create('master_api_list', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('api_group_id')->constrained(table: 'master_api_group');
+            $table->integer('api_group_id');
             $table->string('api_code', length: 255);
             $table->string('api_initial_name', length: 255);
             $table->string('api_method', length: 255);
@@ -25,6 +25,10 @@ class CreateMasterApiListTable extends Migration
             $table->string('auth', length: 255)->default('');
             $table->boolean('is_active');
             $table->timestamps();
+        });
+
+        Schema::table('master_api_list', function (Blueprint $table) {
+            $table->foreign('api_group_id')->references('id')->on('master_api_group');
         });
     }
 
