@@ -15,7 +15,7 @@ class CreateTokoShippingAddressesTable extends Migration
     {
         Schema::create('toko_shipping_addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('toko_id')->constrained(table: 'master_data_toko');
+            $table->integer('toko_id');
             $table->text('full_address');
             $table->integer('province_id')->nullable();
             $table->integer('city_id')->nullable();
@@ -26,6 +26,10 @@ class CreateTokoShippingAddressesTable extends Migration
             $table->boolean('is_main')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+        });
+
+        Schema::table('toko_shipping_addresses', function (Blueprint $table) {
+            $table->foreign('toko_id')->references('id')->on('master_data_toko');
         });
     }
 
