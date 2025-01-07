@@ -15,7 +15,7 @@ class CreateMasterApiGroupTable extends Migration
     {
         Schema::create('master_api_group', function (Blueprint $table) {
             $table->id();
-            $table->string('api_group_name', length: 255)->unique();
+            $table->string('api_group_name', 255)->unique();
             $table->boolean('is_active');
             $table->timestamps();
         });
