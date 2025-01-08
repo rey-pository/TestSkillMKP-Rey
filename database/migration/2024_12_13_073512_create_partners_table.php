@@ -19,6 +19,7 @@ class CreatePartnersTable extends Migration
             $table->string('code')->unique();
             $table->text('client_id')->unique();
             $table->text('client_secret');
+            $table->boolean('is_active')->default(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
